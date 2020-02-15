@@ -8,18 +8,10 @@ toc-title: "目錄"
 paperwidth: 8.27in
 paperheight: 11.69in
 output:
-  pagedown::html_paged:
-    toc: true
-    front_cover: "styles/cover.jpg"
-    back_cover: "styles/cover.jpg"
-    self_contained: false
-    css: ["styles/pagedown.css", "default-fonts", "default-page", "default"]
-#  html_document:
-#    number_sections: yes
-#    highlight: tango
-#    toc: no
-#    css: "styles/html_document.css"
-#knit: pagedown::chrome_print
+  html_document:
+    number_sections: yes
+    highlight: tango
+    toc: no
 ---
 
 ```{r setup, include=FALSE}
@@ -33,7 +25,7 @@ knitr::opts_chunk$set(
 簡介
 =====================
 
-本次專案中，團隊企圖透過分析有關電影此一主題相關數據中隱含的訊息，得以檢驗一些我們日常生活中較直覺式的想法:譬如電影的出品量是否逐年提升? 近期出品的電影是否比以往出品的電影熱門?電影總是男主角?或是全球票房與平均用戶評分其實沒關係?
+本次專案中，團隊企圖透過分析有關電影此一主題相關數據中隱含的訊息，得以檢驗一些我們日常生活中較直覺式的想法，比如電影的出品量是否逐年提升?近期出品的電影是否比以往出品的電影熱門？電影總是男主角？或是全球票房與平均用戶評分其實沒關係？
 
 
 方法
@@ -42,8 +34,7 @@ knitr::opts_chunk$set(
 
 
 資料取得
-從著名的網路電影資料庫IMDB擷取自1977-2019的電影各項資料，
-並自mojo爬蟲票房數據進行資料視覺化。
+從著名的網路電影資料庫IMDb取得1977-2019的電影各項資料，並自mojo網站爬蟲票房數據進行資料視覺化。
 
 ```{r}
 library(dplyr)
@@ -56,9 +47,6 @@ library(tidytext)
 df_genre_ratings <- read_csv("genre_ratings.csv")
 df_gross <- read_csv('gross_ratings.csv')
 df_gender_diff <- read_csv("gender_diff.csv")
-
-
-
 
 ```
 
@@ -123,9 +111,12 @@ ggplot(df_gross, aes(x = averageRating, y = worldwide)) +
 =====================
 
 以下幾點是我們認爲本報告可以更詳盡的部分
-1.在看男女主演那邊，主演我們每部電影只取網頁中cast第一位的演員，並沒有考慮到一部電影有超過一位的主演的狀況。
-2.在分類電影類別的部分可以有更接近現實的分法，應該要給予每部電影2~3個genre去做交叉比對的分析
-3.在八五年代以前，性別比例其實非常接近，但後來男性演員又大幅提升的現象，這可能是因為早期的資料蒐集並沒有很明確，因此才會讓性別比從低於八十的部分開始成長。
+
+1. 在看男女主演那邊，主演我們每部電影只取網頁中cast第一位的演員，並沒有考慮到一部電影有超過一位的主演的狀況。
+
+2. 在分類電影類別的部分可以有更接近現實的分法，應該要給予每部電影2~3個genre去做交叉比對的分析
+
+3. 在八五年代以前，性別比例其實非常接近，但後來男性演員又大幅提升的現象，這可能是因為早期的資料蒐集並沒有很明確，因此才會讓性別比從低於八十的部分開始成長。
 
 
 
@@ -134,9 +125,9 @@ ggplot(df_gross, aes(x = averageRating, y = worldwide)) +
 組員分工
 =====================
 
-洪譽家：資料探索、爬蟲、資料視覺化
-胡凱昱：資料探勘、資料整理、資料視覺化
-許國輝：製作海報，結果分析
-江鈺崴：海報製作、結果分析
+洪譽家：資料探勘、爬蟲、資料視覺化  
+胡凱昱：資料探勘、資料整理、資料視覺化  
+許國輝：製作海報，結果分析  
+江鈺崴：海報製作、結果分析  
 
 
